@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteRule ^name/([^/]*)\.html$ /photo.php?name=$1 [L]
+RewriteRule ^/photo.php?name=(.+) /name/$1 [R=301,L]
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+RewriteCond %{THE_REQUEST} /photo\.php\?name=([^&\s]+)\s [NC]
+RewriteRule ^ /name/%1? [R=301,L,NE]
+
+RewriteRule ^name/([^/]+)/([^/]+)/?$ photo.php?name=$1 [QSA,L,NC]
